@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+        
+        <meta name="format-detection" content="telephone=no">
+        <meta name="msapplication-tap-highlight" content="no">
+        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+        <meta name="color-scheme" content="light dark">
+        <link rel="stylesheet" href="css/public/@ionic/core/css/ionic.bundle.css" />
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+        <title>Calculadora Vuelto</title>
+    </head>
+    <body>
+        <ion-app>
+            <ion-header>
+                <ion-toolbar color="primary">
+                    <ion-buttons slot="start">
+                        <ion-button>
+                            <ion-icon slot="icon-only" name="logo-ionic"></ion-icon>
+                        </ion-button>
+                    </ion-buttons>
+                    <ion-title>Calculadora</ion-title>
+                </ion-toolbar>
+            </ion-header>
+    
+    
+    
+            <ion-content>
+                <div id='ocultar'>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size-md="10" offset-md="1">
+                                <!-- Ionic Card -->
+                                <ion-card color="light">
+                                    <ion-card-content>
+                                        <ion-label>
+                                            Agrega la tasa del dia.
+                                        </ion-label>
+                                        <ion-item>
+                                            <ion-input type="number" id="dolar" placeholder="Monto">
+                                        </ion-item>
+                                        <ion-button onclick="cerrar();">Guardar tasa</ion-button>
+                                    </ion-card-content>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size-md="4" offset-md="4">
+                                <ion-list id="product-list"></ion-list>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size-md="4" offset-md="4">
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+                <div id="flotante" style="display:none;">
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col size-md="10" offset-md="1">
+                                <!-- Ionic Card -->
+                                <ion-card color="light">
+                                    <ion-card-content>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2">Monto total</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <ion-label for="">Monto dolar</ion-label>
+                                                        <ion-input id="caja1" placeholder="Monto" type="number"
+                                                            style="width : 100px; ">
+                                                    <th scope="row">
+                                                        <ion-label for="">Monto bolivares</ion-label>
+                                                        <ion-input id="caja3" placeholder="Monto" type="number"
+                                                            style="width : 100px; ">
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2">Tipo de Pago</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <ion-label for="">Pago dolar</ion-label>
+                                                        <ion-input type="number" id="pago1" placeholder="Monto1"
+                                                            style="width : 100px; ">
+                                                    </th>
+                                                    <th scope="row">
+                                                        <ion-label for="">Pago Bolivares</label>
+                                                            <ion-input type="number" id="pago2" placeholder="Monto"
+                                                                style="width : 100px; ">
+                                                    </th>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">
+                                                        <ion-label for="">Pago movil</ion-label>
+                                                        <ion-input type="number" id="pago3" placeholder="Monto"
+                                                            style="width : 100px; ">
+                                                    </th>
+                                                    <th scope="row">
+                                                        <ion-label for="">Pago tarjeta</ion-label>
+                                                        <ion-input type="number" id="pago4" placeholder="Monto"
+                                                            style="width : 100px; ">
+                                                    </th>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div id="nuevo" style="display: none;">
+                                        <table class='table'>
+                                            <thead>
+                                                <tr>
+                                                    <th scope='col' colspan='1'>Vuelto comercio</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope='row'>
+                                                        <ion-label>Dolares</ion-label>
+                                                        <ion-input type='number' id='vueltoc1' placeholder='Monto'
+                                                            style='width : 100px; '>
+                                                    </th>
+                                                    <th scope='row'>
+                                                        <ion-label>Bolivares</ion-label>
+                                                        <ion-input type='number' id='vueltoc2' placeholder='Monto'
+                                                            style='width : 100px; '>
+                                                    </th>
+                                                </tr>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <ion-label for="">Pago movil</ion-label>
+                                                    <ion-input type="number" id="vueltoc3" placeholder="Monto"
+                                                        style="width : 100px; ">
+                                                </th>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                        </div>
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" colspan="2">Diferencia</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+    
+                                                    <th scope="row">
+                                                        <ion-label for="">Dolares</ion-label>
+                                                        <ion-input type="number" readonly id="diferencia1"
+                                                            placeholder="Monto" style="width : 100px; ">
+                                                    </th>
+    
+                                                    <th scope="row">
+                                                        <ion-label for="">Bolivares</ion-label>
+                                                        <ion-input type="number" readonly id="diferencia2"
+                                                            placeholder="Monto" style="width : 100px; ">
+                                                    </th>
+                                                </tr>
+                                                
+    
+    
+    
+                                            </tbody>
+                                        </table>
+    
+                                        <ion-button onclick="limpiar();">limpiar</ion-button>
+                                        <ion-button onclick="vueltoBs();">vuelto extra</ion-button>
+                                        <ion-button color="success" onclick="cambiarTasa();">Cambiar Tasa</ion-button>
+                                    </ion-card-content>
+                                </ion-card>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size-md="4" offset-md="4">
+                                <ion-list id="product-list"></ion-list>
+                            </ion-col>
+                        </ion-row>
+                        <ion-row>
+                            <ion-col size-md="4" offset-md="4">
+                            </ion-col>
+                        </ion-row>
+                    </ion-grid>
+                </div>
+            </ion-content>
+        </ion-app>
+    
+    
+        <script src="cordova.js"></script>
+        <script src="js/index.js"></script>
+        <script type="module" src="css/public/@ionic/core/dist/ionic/ionic.esm.js"></script>
+    <script nomodule src="cssl/public/@ionic/core/dist/ionic/ionic.js"></script>
+
+
+    <style>
+        ion-content {
+            display: flex;
+            flex-direction: column;
+            width: relative;
+            height: relative;
+        }
+    </style>
+    </body>
+</html>
